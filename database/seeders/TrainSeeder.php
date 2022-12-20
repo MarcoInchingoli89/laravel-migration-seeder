@@ -18,15 +18,15 @@ class TrainSeeder extends Seeder
     {
         for ($i = 0; $i < 12; $i++) {
             $train = new Train();
-            $train->company = $faker->company();
+            $train->company = $faker->randomElement(['Trenitalia', 'Orione', 'ATAC', 'Trenord']);
             $train->departure_station = $faker->randomElement(['Laurentina', 'Firenze', 'Valmontone']);
             $train->arrival_station = $faker->randomElement(['Roma Termini', 'Colleferro', 'Aprilia']);
             $train->departure_time = $faker->dateTimeThisMonth();
             $train->arrival_time = $faker->dateTimeThisMonth();
             $train->train_id = $faker->bothify('??####????????????######');
-            $train->wagons_number = $faker->numberBetween(4 - 8);
-            $train->company = $faker->randomElement([true, false]);
-            $train->company = $faker->randomElement([true, false]);
+            $train->wagons_number = $faker->randomDigit();
+            $train->is_in_time = $faker->randomElement([true, false]);
+            $train->is_cancelled = $faker->randomElement([true, false]);
             $train->save();
         }
     }
